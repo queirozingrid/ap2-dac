@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	<h:head>
+		<title>Denuncia Já - Bem-vindo(a)</title>
+	</h:head>
+
+<h:body>
+
+<center>
+	<p:panel header="Seja bem vindo(a) ao Denuncia Já!"></p:panel>
+	
+	<p:panelGrid columns="2"
+                 layout="grid"
+                 styleClass="ui-panelgrid-blank ui-fluid"
+                 style="border:0px none; background-color:transparent; width: 70%;">
+                 
+                 
+		<p:panelGrid columns="1"
+	       			 
+	                 layout="grid"
+	                 styleClass="ui-panelgrid-blank ui-fluid"
+	                 style="border:0px none; background-color:transparent;">	                 
+			  <p:panel header="Estatísticas de Abuso e Assédio Infantil">
+					<p>
+					    Infelizmente, as estatísticas de abuso e assédio infantil são alarmantes. De acordo com dados recentes,
+					    milhões de crianças em todo o mundo são vítimas desses crimes terríveis a cada ano.
+					    Aproximadamente uma em cada quatro meninas e um em cada seis meninos experimentam algum tipo de abuso antes de completarem 18 anos.
+					    Esses números chocantes destacam a urgência de enfrentar esse problema e proteger nossas crianças.
+					</p>
+				</p:panel>
+				<p:panel header="Importância de Denunciar">
+					<p>
+					    Denunciar casos de abuso e assédio infantil é crucial para interromper o ciclo de violência e proteger as crianças.
+					    Muitas vezes, as vítimas sofrem em silêncio, com medo, vergonha e manipulação por parte dos agressores.
+					    Ao denunciar, estamos oferecendo às crianças uma voz, uma oportunidade de buscar ajuda e colocar um fim ao sofrimento.
+					    Denunciar é um ato corajoso e fundamental para garantir a segurança e o bem-estar das crianças,
+					    além de responsabilizar os agressores pelos seus atos.
+					    Juntos, podemos criar uma sociedade onde todas as crianças possam crescer em um ambiente seguro e protegido.
+					</p>
+				</p:panel>
+		</p:panelGrid>
+		
+		<p:panelGrid columns="1"
+        			
+	                 layout="grid"
+	                 styleClass="ui-panelgrid-blank ui-fluid"
+	                 style="border:0px none; background-color:transparent;">
+			<h:form id= "formulario">
+				<p:messages id="messages" showDetail="true" closable="true"><p:autoUpdate/></p:messages>
+				
+				<p:panel header="Presenciou ou ouviu algum incidente? Faça sua denuncia:">
+					<p:panelGrid columns="2">
+						<p:outputLabel for="login" value= "Login" />
+						<p:inputText id="login" value="#{usuarioBean.usuario.login}" required="true" />
+						
+						<p:outputLabel for="senha" value="Senha" />
+						<p:password id="senha" value="#{usuarioBean.usuario.senha}" required="true" />
+					</p:panelGrid>
+					
+					
+			        <p:commandButton action="#{loginBean.logar}" value="Acessar" styleClass="ui-button-success"/>
+
+					<h3>Se for sua primeira vez, realize seu cadastro</h3>
+					<p:button outcome="cadastro_usuario" value="Cadastrar-se"/>
+				</p:panel>
+			</h:form>
+		</p:panelGrid>
+	</p:panelGrid>
+</center>
+	
+</h:body>	
+</html>
