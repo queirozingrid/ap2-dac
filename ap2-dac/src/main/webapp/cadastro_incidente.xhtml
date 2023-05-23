@@ -1,19 +1,161 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Insert title here</title>
-</head>
+<h:head>
+    <title>Formulário de Cadastro - Incidente</title>
+</h:head>
+
 <h:body>
-	CADASTRO INCIDENTE
-	<h:form>
-		<p:commandButton value="incidente" action="#{incidenteBean.teste}"></p:commandButton>
-		<p:commandButton value="logar" action="#{loginBean.logar}"></p:commandButton>
-	</h:form>
+	<p:messages id="messages" showDetail="true" closable="true"><p:autoUpdate/></p:messages>
+	<center>
+		<div class="card">
+		    <p:tabMenu activeIndex="1">
+		        <p:menuitem value="Login" outcome="/index.xhtml" icon="pi pi-fw pi-home">
+		            <f:param name="Login" value="0"/>
+		        </p:menuitem>
+		        <p:menuitem value="Cadastro de Incidentes" outcome="/cadastro_incidente.xhtml" icon="pi pi-fw pi-file">
+		            <f:param name="CadastroIncidente" value="1"/>
+		        </p:menuitem>
+		        <p:menuitem value="Cadastro de Usuário" outcome="/cadastro_usuario.xhtml" icon="pi pi-fw pi-user">
+		            <f:param name="CadastroUsuario" value="2"/>
+		        </p:menuitem>
+		    </p:tabMenu>
+		</div>
+	    <h:form id="formulario_incidente">
+	    
+		    <p:wizard style="width: 70%;">
+	            <p:tab id="tab_vitima" title="Vitima">
+	                <p:panel header="Sobre a vítima">
+						<p:panelGrid columns="2"
+									 layout="grid"
+			                 		 styleClass="ui-panelgrid-blank ui-fluid"
+			                 		 style="border:0px none; background-color:transparent; ">
+							<p:outputLabel for="nome_vitima" value="Nome:"/>
+							<p:inputText id="nome_vitima" value="#{incidenteBean.vitima.nome}" />
+							
+							<p:outputLabel for="sexo_vitima" value="Sexo:"/>
+							<p:selectOneButton id="sexo_vitima" value="#{incidenteBean.vitima.sexo}">
+					            <f:selectItem itemLabel="Masculino" itemValue="M"/>
+					            <f:selectItem itemLabel="Feminino" itemValue="F"/>
+					        </p:selectOneButton>
+					        
+					        <p:outputLabel for="idade_vitima" value="Idade:"/>
+							<p:inputNumber id="idade_vitima" value="#{incidenteBean.vitima.idade}" minValue="0" maxValue="20"/>
+							
+							<p:outputLabel for="serie_vitima" value="Série:"/>
+							<p:inputNumber id="serie_vitima" value="#{incidenteBean.vitima.serie}" minValue="1" maxValue="9"/>
+							
+							<p:outputLabel for="turno_vitima" value="Turno:"/>
+							<p:inputText id="turno_vitima" value="#{incidenteBean.vitima.turno}" />
+							
+							<p:outputLabel for="endereco_vitima" value="Endereço:"/>
+							<p:inputTextarea id="endereco_vitima" value="#{incidenteBean.vitima.endereco}" />
+						</p:panelGrid>
+					</p:panel>
+	            </p:tab>
+	            <p:tab id="tab_agressor" title="Agressor">
+	            	<p:panel header="Sobre o agressor">
+						<p:panelGrid columns="2"
+									 layout="grid"
+			                 		 styleClass="ui-panelgrid-blank ui-fluid"
+			                 		 style="border:0px none; background-color:transparent;">
+							<p:outputLabel for="nome_agressor" value="Nome:"/>
+							<p:inputText id="nome_agressor" value="#{incidenteBean.supostoAgressor.nome}" />
+							
+							<p:outputLabel for="sexo_agressor" value="Sexo:"/>
+							<p:selectOneButton id="sexo_agressor" value="#{incidenteBean.supostoAgressor.sexo}">
+					            <f:selectItem itemLabel="Masculino" itemValue="M"/>
+					            <f:selectItem itemLabel="Feminino" itemValue="F"/>
+					        </p:selectOneButton>
+					        
+					        <p:outputLabel for="id_genero_agressor" value="Identidade de Gênero:"/>
+							<p:selectOneButton id="id_genero_agressor" value="#{incidenteBean.supostoAgressor.identidadeGenero}"
+											  layout="grid" columns="2" styleClass="grid-radio">
+					            <f:selectItem itemLabel="Masculino Cissexual" itemValue="Masculino Cissexual"/>
+					            <f:selectItem itemLabel="Masculino Transexual" itemValue="Masculino Transexual"/>
+					            <f:selectItem itemLabel="Feminino Cissexual" itemValue="Feminino Cisgênero"/>
+					            <f:selectItem itemLabel="Feminino Transexual" itemValue="Feminino Transexual"/>
+					        </p:selectOneButton>
+					        
+					        <p:outputLabel for="orientacao_sexual_agressor" value="Orientação Sexual:"/>
+							<p:selectOneRadio id="orientacao_sexual_agressor" value="#{incidenteBean.supostoAgressor.orientacaoSexual}"
+											  layout="grid" columns="3" styleClass="grid-radio">
+					            <f:selectItem itemLabel="Heterossexual" itemValue="Heterossexual"/>
+					            <f:selectItem itemLabel="Homossexual" itemValue="Homossexual"/>
+					            <f:selectItem itemLabel="Bissexual" itemValue="Bissexual"/>
+					            <f:selectItem itemLabel="Pansexual" itemValue="Pansexual"/>
+					            <f:selectItem itemLabel="Não Binário" itemValue="Não Binário"/>
+					        </p:selectOneRadio>
+					        
+					        <p:outputLabel for="idade_agressor" value="Idade:"/>
+							<p:inputNumber id="idade_agressor" value="#{incidenteBean.supostoAgressor.idade}" minValue="0" maxValue="130"/>
+							
+							<p:outputLabel for="relacionamento_com_vitima" value="Relacionamento com a Vítima:"/>
+							<p:inputText id="relacionamento_com_vitima" value="#{incidenteBean.supostoAgressor.relacionamentoVitima}" />
+							
+							<p:outputLabel for="ocupacao_agressor" value="Ocupação:"/>
+							<p:inputText id="ocupacao_agressor" value="#{incidenteBean.supostoAgressor.ocupacao}" />
+							
+							<p:outputLabel for="raca_agressor" value="Raça/Cor:"/>
+							<p:selectOneRadio id="raca_agressor" value="#{incidenteBean.supostoAgressor.raca}"
+											  layout="grid" columns="2" styleClass="grid-radio" >
+					            <f:selectItem itemLabel="Branca" itemValue="branca"/>
+					            <f:selectItem itemLabel="Preta" itemValue="preta"/>
+					            <f:selectItem itemLabel="Parda" itemValue="parda"/>
+					            <f:selectItem itemLabel="Indígena" itemValue="indigena"/>
+					            <f:selectItem itemLabel="Amarela" itemValue="amarela"/>
+					        </p:selectOneRadio>
+					        
+					        <p:outputLabel for="escolaridade_agressor" value="Escolaridade:"/>
+					        <p:selectOneRadio id="escolaridade_agressor" value="#{incidenteBean.supostoAgressor.escolaridade}"
+					        				  layout="grid" columns="4" styleClass="grid-radio">
+					            <f:selectItem itemLabel="1°" itemValue="primeiro"/>
+					            <f:selectItem itemLabel="2°" itemValue="segundo"/>
+					            <f:selectItem itemLabel="3°" itemValue="terceiro"/>
+					            <f:selectItem itemLabel="4°" itemValue="quarto"/>
+					            <f:selectItem itemLabel="5°" itemValue="quinto"/>
+					            <f:selectItem itemLabel="6°" itemValue="sexto"/>
+					            <f:selectItem itemLabel="7°" itemValue="setimo"/>
+					            <f:selectItem itemLabel="8°" itemValue="oitavo"/>
+					            <f:selectItem itemLabel="9°" itemValue="nono"/>
+					        </p:selectOneRadio>
+
+						</p:panelGrid>
+					</p:panel>
+	            </p:tab>
+	            <p:tab id="tab_incidente" title="Incidente">
+	            	<p:panel header="Sobre o ocorrido">
+						<p:panelGrid columns="1"
+									 layout="grid"
+			                 		 styleClass="ui-panelgrid-blank ui-fluid"
+			                 		 style="border:0px none; background-color:transparent;">
+                                <p:panel header="Relato da Vítima">
+                                        <p:inputTextarea value="#{incidenteBean.incidente.descricaoIncidente}" />
+                                </p:panel>
+								
+								<p:panel header="Direitos Violados">
+	                                 <p:selectManyCheckbox value="#{incidenteBean.direitosVioladosSelecionadosPelaVitima}" layout="grid" columns="3" styleClass="grid-checkbox">			   
+	                  					   <f:selectItems value="#{incidenteBean.possiveisDireitosViolados}" 
+	                  					 				  var="possivelDireitoViolado" itemLabel="#{possivelDireitoViolado}" itemValue="#{possivelDireitoViolado}"/>
+	                  					   
+					        		</p:selectManyCheckbox>
+				        		</p:panel>
+				        		
+				        		 <p:panel header="Providências Tomadas">
+                                        <p:inputTextarea value="#{incidenteBean.incidente.providenciasTomadas}" />
+                                </p:panel>
+	                       </p:panelGrid>
+					</p:panel>
+					<p:commandButton value="Relatar Incidente" action="#{incidenteBean.salvar}" style="margin-top: 50px;"/>
+	            </p:tab>
+	         </p:wizard>	
+	    </h:form>	
+	</center>
 </h:body>
 </html>

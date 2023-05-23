@@ -50,10 +50,15 @@ public class UsuarioDao {
 		String jpql = "select u from Usuario u where u.login = :login and u.senha = :senha";
 		
 		try {
-			em.createQuery(jpql, Usuario.class).
+			List<Usuario> usuariosEncontrados = em.createQuery(jpql, Usuario.class).
 					setParameter("login", login).
 					setParameter("senha", senha).getResultList();
-			return true;
+			
+			if (usuariosEncontrados.size()==0) {
+				return false;
+			} else {
+				return true;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			

@@ -1,16 +1,12 @@
 package bean;
 
-import java.util.List;
-import javax.faces.application.FacesMessage;
-import javax.faces.application.FacesMessage.Severity;
-import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
-import static util.MessageUtil.*;
+import static util.MessageUtil.erro;
+import static util.MessageUtil.sucesso;
 
-import entidades.Denuncia;
-import entidades.Vitima;
-import dao.DenunciaDao;
+import java.util.List;
+
 import dao.VitimaDao;
+import entidades.Vitima;
 
 public class VitimaBean {
 	private Vitima vitima = new Vitima();

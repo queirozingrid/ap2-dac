@@ -1,13 +1,14 @@
 package entidades;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.GeneratedValue;
+import java.util.List;
+
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
-@Table(name = "suposto_agressor")
 public class Agressor {
 	
 	@Id
@@ -23,7 +24,14 @@ public class Agressor {
 	@Column(name = "identidade_de_genero")
 	private String identidadeGenero;
 	private String escolaridade;
+	private String orientacaoSexual;
 	
+	@OneToMany(mappedBy = "agressor")
+	private List<Incidente> incidentes;
+	
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	public Integer getId() {
 		return id;
 	}
@@ -75,7 +83,20 @@ public class Agressor {
 	public void setEscolaridade(String escolaridade) {
 		this.escolaridade = escolaridade;
 	}
-	
+
+	public List<Incidente> getIncidentes() {
+		return incidentes;
+	}
+	public void setIncidentes(List<Incidente> incidentes) {
+		this.incidentes = incidentes;
+	}
+
+	public String getOrientacaoSexual() {
+		return orientacaoSexual;
+	}
+	public void setOrientacaoSexual(String orientacaoSexual) {
+		this.orientacaoSexual = orientacaoSexual;
+	}
 	@Override
 	public String toString() {
 		return "Agressor [nome=" + nome + ", sexo=" + sexo + ", idade=" + idade + ", relacionamentoVitima="

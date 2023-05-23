@@ -6,18 +6,17 @@ import static util.MessageUtil.sucesso;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 
 import dao.UsuarioDao;
 import entidades.Usuario;
 
 @ManagedBean
-@RequestScoped 
 public class UsuarioBean {
 	private Usuario usuario = new Usuario();
 	private List<Usuario> lista;
 	
 	public String salvar() {
+		System.out.println("chameeeeeeeeeei");
 		try {
 			UsuarioDao.salvar(usuario);
 			sucesso("Sucesso!", "Usuario criado com sucesso!");

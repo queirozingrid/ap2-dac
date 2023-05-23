@@ -3,45 +3,43 @@ package dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 
-import entidades.Denuncia;
-import entidades.Usuario;
+import entidades.Incidente;
 import util.JPAUtil;
 
-public class DenunciaDao {
+public class IncidenteDao {
 	
 	
-	public static void salvar(Denuncia d) {
+	public static void salvar(Incidente incidente) {
 		EntityManager em = JPAUtil.criarEntityManager();
 		em.getTransaction().begin();
-		em.persist(d);
+		em.persist(incidente);
 		em.getTransaction().commit();
 		em.close();
 	}
 	
-	public static void editar(Denuncia d) {
+	public static void editar(Incidente incidente) {
 		EntityManager em = JPAUtil.criarEntityManager();
 		em.getTransaction().begin();
-		em.merge(d);
+		em.merge(incidente);
 		em.getTransaction().commit();
 		em.close();
 	}
 	
-	public static void excluir(Denuncia d) {
+	public static void excluir(Incidente incidente) {
 		EntityManager em = JPAUtil.criarEntityManager();
 		em.getTransaction().begin();
-		d = em.find(Denuncia.class, d.getId());
-		em.remove(d);
+		incidente = em.find(Incidente.class, incidente.getId());
+		em.remove(incidente);
 		em.getTransaction().commit();
 		em.close();
 		
 	}
 	
-	public static List<Denuncia> listar() {
+	public static List<Incidente> listar() {
 		EntityManager em = JPAUtil.criarEntityManager();
-		Query q = em.createQuery("select d from Denuncia d");
-		List<Denuncia> lista = q.getResultList();
+		String jpql = "select i from Incidente i";
+		List<Incidente> lista = em.createQuery(jpql, Incidente.class).getResultList();
 		em.close();
 		return lista;
 	}
