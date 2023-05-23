@@ -1,16 +1,55 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Insert title here</title>
-</head>
+<h:head>
+    <title>Formulário de Cadastro</title>
+</h:head>
+
 <h:body>
-	CADASTRO USUARIO
+	<center>
+		<div class="card">
+		    <p:tabMenu activeIndex="2">
+		        <p:menuitem value="Login" outcome="/index.xhtml" icon="pi pi-fw pi-home">
+		            <f:param name="Login" value="0"/>
+		        </p:menuitem>
+		        <p:menuitem value="Cadastro de Incidentes" outcome="/cadastro_incidente.xhtml" icon="pi pi-fw pi-file">
+		            <f:param name="CadastroIncidente" value="1"/>
+		        </p:menuitem>
+		        <p:menuitem value="Cadastro de Usuário" outcome="/cadastro_usuario.xhtml" icon="pi pi-fw pi-user">
+		            <f:param name="CadastroUsuario" value="2"/>
+		        </p:menuitem>
+		    </p:tabMenu>
+		</div>
+	    <h:form id= "formulario" style="width: 50%; margin-top: 20px;">
+	    	<p:messages id="messages" showDetail="true" closable="true"><p:autoUpdate/></p:messages>
 	
+	        <p:panel header="Cadstro de Usuário">
+				<p:panelGrid columns="2"
+							 layout="grid"
+	                 		 styleClass="ui-panelgrid-blank ui-fluid"
+	                 		 style="border:0px none; background-color:transparent;">			
+		            <p:outputLabel for="nome" value="Nome" />          
+		            <p:inputText id="nome" value="#{usuarioBean.usuario.nome}" required="true" />
+		           
+		            <p:outputLabel for="login"  value="Login" />
+		            <p:inputText id="login" value="#{usuarioBean.usuario.login}" required="true" />
+		                
+		            <p:outputLabel for="senha" value="Senha" />
+		            <p:password id="senha" value="#{usuarioBean.usuario.senha}" required="true" />
+		        
+		            <p:outputLabel for="dataCadastro" value="Data de Cadastro" />
+		            <p:calendar id="dataCadastro" value="#{usuarioBean.usuario.dataCadastro}" required="true" />
+	     		</p:panelGrid>
+	     		<p:commandButton value="Cadastrar" action="#{usuarioBean.salvar}" update= "formulario"
+	     						 type="button" styleClass="ui-button-success" style="margin-top: 20px;"/>
+			</p:panel>
+	    </h:form>
+	</center>
 </h:body>
+
 </html>

@@ -13,7 +13,6 @@ import javax.persistence.GeneratedValue;
 
 
 @Entity
-@Table(name = "usuario")
 public class Usuario {
 	
 	@Id
