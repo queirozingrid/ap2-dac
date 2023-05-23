@@ -1,4 +1,6 @@
 package bean;
+import static util.MessageUtil.sucesso;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -6,6 +8,8 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 
 import dao.IncidenteDao;
 import entidades.Agressor;
@@ -52,7 +56,13 @@ public class IncidenteBean {
 			incidente.setDataRegistro(new Date());
 
 			IncidenteDao.salvar(incidente);
-			System.out.println("ta dando bom hein");
+			
+			FacesContext facesContext = FacesContext.getCurrentInstance();
+	        ExternalContext externalContext = facesContext.getExternalContext();
+	        
+	        externalContext.redirect("cadastro_incidente.xhtml");
+
+			sucesso("Incidente relatado com sucesso", null);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

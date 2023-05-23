@@ -67,8 +67,4 @@ public class UsuarioDao {
 			em.close();
 		}
 	}
-	
-	// implementar login() ???
-	// sim!!!
-		
 }

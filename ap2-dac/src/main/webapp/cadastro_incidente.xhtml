@@ -12,7 +12,7 @@
 </h:head>
 
 <h:body>
-	<p:messages id="messages" showDetail="true" closable="true"><p:autoUpdate/></p:messages>
+	<p:growl id="messages" life="5000"/>
 	<center>
 		<div class="card">
 		    <p:tabMenu activeIndex="1">
@@ -22,12 +22,15 @@
 		        <p:menuitem value="Cadastro de Incidentes" outcome="/cadastro_incidente.xhtml" icon="pi pi-fw pi-file">
 		            <f:param name="CadastroIncidente" value="1"/>
 		        </p:menuitem>
+		        <p:menuitem value="Lista de Incidentes" outcome="/listagem_incidente.xhtml" icon="pi pi-fw pi-list">
+		            <f:param name="ListagemIncidente" value="2"/>
+		        </p:menuitem>
 		        <p:menuitem value="Cadastro de Usuário" outcome="/cadastro_usuario.xhtml" icon="pi pi-fw pi-user">
-		            <f:param name="CadastroUsuario" value="2"/>
+		            <f:param name="CadastroUsuario" value="3"/>
 		        </p:menuitem>
 		    </p:tabMenu>
 		</div>
-	    <h:form id="formulario_incidente">
+	    <h:form id="formulario-incidente">
 	    
 		    <p:wizard style="width: 70%;">
 	            <p:tab id="tab_vitima" title="Vitima">
@@ -152,7 +155,9 @@
                                 </p:panel>
 	                       </p:panelGrid>
 					</p:panel>
-					<p:commandButton value="Relatar Incidente" action="#{incidenteBean.salvar}" style="margin-top: 50px;"/>
+					<p:commandButton value="Relatar Incidente" action="#{incidenteBean.salvar}"
+									 style="margin-top: 50px;">
+					</p:commandButton>
 	            </p:tab>
 	         </p:wizard>	
 	    </h:form>	

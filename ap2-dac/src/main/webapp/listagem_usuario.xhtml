@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Todos os Usuários</title>
+</h:head>
+
+<h:body>
+	<center>
+		<f:event listener="#{usuarioBean.getLista}" type="preRenderView"></f:event>
+		<p:growl id="messages" life="5000"/>
+		<div class="card">
+		    <p:tabMenu activeIndex="4">
+		        <p:menuitem value="Login" outcome="/index.xhtml" icon="pi pi-fw pi-home">
+		            <f:param name="Login" value="0"/>
+		        </p:menuitem>
+		        <p:menuitem value="Cadastro de Incidentes" outcome="/cadastro_incidente.xhtml" icon="pi pi-fw pi-file">
+		            <f:param name="CadastroIncidente" value="1"/>
+		        </p:menuitem>
+		        <p:menuitem value="Cadastro de Usuário" outcome="/cadastro_usuario.xhtml" icon="pi pi-fw pi-user">
+		            <f:param name="CadastroUsuario" value="2"/>
+		        </p:menuitem>
+		        <p:menuitem value="Lista de Incidentes" outcome="/listagem_incidente.xhtml" icon="pi pi-fw pi-list">
+		            <f:param name="ListagemIncidente" value="3"/>
+		        </p:menuitem>
+		        <p:menuitem value="Lista de Usuários" outcome="/listagem_usuario.xhtml" icon="pi pi-fw pi-users">
+		            <f:param name="ListagemUsuario" value="4"/>
+		        </p:menuitem>
+		        <p:menuitem value="Sair" outcome="/index.xhtml" icon="pi pi-fw pi-power-off">
+		            <f:param name="Sair" value="5"/>
+		        </p:menuitem>
+		    </p:tabMenu>
+		</div>
+		<h:form id="form-usuarios">
+			<p:dataTable id="tabela-usuarios" value="#{usuarioBean.lista}" var="usuario"
+						 selectionMode="single"
+						 selection="#{usuarioBean.usuario}" rowKey="#{usuario.id}"
+						 emptyMessage="Nenhum registro encontrado">
+				<f:facet name="header">
+					<h:outputText value="Usuários"/>
+				</f:facet>
+				<p:column headerText="Nome">
+					<p:outputLabel value="#{usuario.nome}" />
+				</p:column>
+				<p:column headerText="Login">
+					<p:outputLabel value="#{usuario.login}" />
+				</p:column>
+				<p:column headerText="Data de Cadastro">
+					<p:outputLabel value="#{usuario.dataCadastro}" />
+				</p:column>
+				<p:ajax event="rowSelect" update=":form-usuarios:detalhesUsuario" oncomplete="PF('usuarioDialog').show()"/>
+			</p:dataTable>
+			
+			<p:dialog header="Detalhes do Usuário" widgetVar="usuarioDialog" modal="true" showEffect="fade" hideEffect="fade"
+             	resizable="true" style="text-align:center; width: 100%;" >
+				<p:outputPanel id="detalhesUsuario">
+					<p:panel>
+						<p:panelGrid  columns="2" style="width: 100%;">
+			            	<p:outputLabel for="nome" value="Nome:"/>		            	
+			            	<p:inputText   id="nome" placeholder="#{usuarioBean.usuario.nome}"
+			            				   value="#{usuarioBean.usuario.nome}" required="true"/>
+	
+			            	<p:outputLabel for="login" value="Login:"/>		            	
+			            	<p:inputText   id="login" placeholder="#{usuarioBean.usuario.login}"
+			            				   value="#{usuarioBean.usuario.login}" required="true"/>
+	
+			            	<p:outputLabel for="senha" value="Senha:"/>		            	
+			            	<p:password    id="senha" value="#{usuarioBean.usuario.senha}" required="true"
+			            				   requiredMessage="Por falta do campo 'senha', os dados não foram alterados.
+			            				   					Tente novamente, preeenchendo esse campo"/>
+	
+			            	<p:outputLabel value="Data de Alteração dos Dados:"/>		            	
+			            	<p:datePicker  value="#{usuarioBean.usuario.dataCadastro}" />
+			            </p:panelGrid>
+			            
+			            <p:commandButton value="Editar" action="#{usuarioBean.editar}" oncomplete="PF('usuarioDialog').hide()"
+			            				 styleClass="ui-button-info" icon="pi pi-fw pi-pencil" update="messages"
+			            				 style="margin-top: 20px;"/>
+
+			            <p:commandButton value="Remover" action="#{usuarioBean.remover}" oncomplete="PF('usuarioDialog').hide()"
+			            				 styleClass="ui-button-danger" icon="pi pi-fw pi-trash" update="messages"
+			            				 style="margin-top: 20px; margin-left: 10px;"/>
+					</p:panel>
+				</p:outputPanel>
+			</p:dialog>
+			
+		</h:form>
+	</center>
+</h:body>
+</html>

@@ -27,8 +27,11 @@
 		        <p:menuitem value="Lista de Incidentes" outcome="/listagem_incidente.xhtml" icon="pi pi-fw pi-list">
 		            <f:param name="ListagemIncidente" value="3"/>
 		        </p:menuitem>
+		         <p:menuitem value="Lista de Usuários" outcome="/listagem_usuario.xhtml" icon="pi pi-fw pi-users">
+		            <f:param name="ListagemUsuario" value="4"/>
+		        </p:menuitem>
 		        <p:menuitem value="Sair" outcome="/index.xhtml" icon="pi pi-fw pi-power-off">
-		            <f:param name="Sair" value="4"/>
+		            <f:param name="Sair" value="5"/>
 		        </p:menuitem>
 		    </p:tabMenu>
 		</div>
@@ -38,6 +41,10 @@
 						 selectionMode="single"
 						 selection="#{incidenteBean.incidente}" rowKey="#{incidente.id}"
 						 emptyMessage="Nenhum registro encontrado">
+				
+				<f:facet name="header">
+					<h:outputText value="Incidentes"/>
+				</f:facet>
 				<p:column headerText="Nome da Vítima">
 					<p:outputLabel value="#{incidente.vitima.nome}" />
 				</p:column>
@@ -97,7 +104,7 @@
 				            	<p:outputLabel value="#{incidenteBean.incidente.agressor.identidadeGenero}" />
 				            	
 				            	<p:outputLabel value="Orientação sexual do agressor:"/>		            	
-				            	<p:outputLabel value="#{incidenteBean.incidente.agressor.identidadeGenero}" />
+				            	<p:outputLabel value="#{incidenteBean.incidente.agressor.orientacaoSexual}" />
 		
 				            	<p:outputLabel value="Raça/Cor do agressor:"/>		            	
 				            	<p:outputLabel value="#{incidenteBean.incidente.agressor.raca}" />

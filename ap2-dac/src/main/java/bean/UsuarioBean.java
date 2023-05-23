@@ -16,7 +16,6 @@ public class UsuarioBean {
 	private List<Usuario> lista;
 	
 	public String salvar() {
-		System.out.println("chameeeeeeeeeei");
 		try {
 			UsuarioDao.salvar(usuario);
 			sucesso("Sucesso!", "Usuario criado com sucesso!");
@@ -35,8 +34,6 @@ public class UsuarioBean {
 			erro("Erro", "Não foi possível realizar a alteração.");
 		} return null;
 	}
-	
-	// public String login() {}
 	
 	public String excluir() {
 		try {
