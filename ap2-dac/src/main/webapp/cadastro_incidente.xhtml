@@ -32,7 +32,7 @@
 		</div>
 	    <h:form id="formulario-incidente">
 	    
-		    <p:wizard style="width: 70%;">
+		    <p:wizard id="wizard" widgetVar="wizard" style="width: 70%;">
 	            <p:tab id="tab_vitima" title="Vitima">
 	                <p:panel header="Sobre a vítima">
 						<p:panelGrid columns="2"
@@ -139,7 +139,8 @@
 			                 		 styleClass="ui-panelgrid-blank ui-fluid"
 			                 		 style="border:0px none; background-color:transparent;">
                                 <p:panel header="Relato da Vítima">
-                                        <p:inputTextarea value="#{incidenteBean.incidente.descricaoIncidente}" />
+                                        <p:inputTextarea value="#{incidenteBean.incidente.descricaoIncidente}" required="true"
+                                        				 requiredMessage="Mesmo que sem muitos detalhes, o relato da vítima é necessário para a tomada de providências"/>
                                 </p:panel>
 								
 								<p:panel header="Direitos Violados">
@@ -155,8 +156,9 @@
                                 </p:panel>
 	                       </p:panelGrid>
 					</p:panel>
-					<p:commandButton value="Relatar Incidente" action="#{incidenteBean.salvar}"
-									 style="margin-top: 50px;">
+					<p:commandButton value="Relatar Incidente" action="#{incidenteBean.salvar}" update=":formulario-incidente :messages"
+									 style="margin-top: 50px;" styleClass="ui-button-warning">
+					   <p:resetInput target=":formulario-incidente:tab_incidente" />
 					</p:commandButton>
 	            </p:tab>
 	         </p:wizard>	

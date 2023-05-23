@@ -80,11 +80,11 @@
 			            </p:panelGrid>
 			            
 			            <p:commandButton value="Editar" action="#{usuarioBean.editar}" oncomplete="PF('usuarioDialog').hide()"
-			            				 styleClass="ui-button-info" icon="pi pi-fw pi-pencil" update="messages"
+			            				 styleClass="ui-button-info" icon="pi pi-fw pi-pencil" update="messages :form-usuarios:tabela-usuarios"
 			            				 style="margin-top: 20px;"/>
 
-			            <p:commandButton value="Remover" action="#{usuarioBean.remover}" oncomplete="PF('usuarioDialog').hide()"
-			            				 styleClass="ui-button-danger" icon="pi pi-fw pi-trash" update="messages"
+			            <p:commandButton value="Remover" action="#{usuarioBean.excluir}" oncomplete="PF('usuarioDialog').hide()"
+			            				 styleClass="ui-button-danger" icon="pi pi-fw pi-trash" update="messages :form-usuarios:tabela-usuarios"
 			            				 style="margin-top: 20px; margin-left: 10px;"/>
 					</p:panel>
 				</p:outputPanel>

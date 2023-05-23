@@ -8,8 +8,6 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 
 import dao.IncidenteDao;
 import entidades.Agressor;
@@ -56,13 +54,10 @@ public class IncidenteBean {
 			incidente.setDataRegistro(new Date());
 
 			IncidenteDao.salvar(incidente);
-			
-			FacesContext facesContext = FacesContext.getCurrentInstance();
-	        ExternalContext externalContext = facesContext.getExternalContext();
-	        
-	        externalContext.redirect("cadastro_incidente.xhtml");
-
 			sucesso("Incidente relatado com sucesso", null);
+
+			incidente = new Incidente();
+			direitosVioladosSelecionadosPelaVitima = null;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

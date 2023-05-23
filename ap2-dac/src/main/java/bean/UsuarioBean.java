@@ -38,7 +38,8 @@ public class UsuarioBean {
 	public String excluir() {
 		try {
 			UsuarioDao.excluir(usuario);
-			sucesso("Sucesso", "Usuário excluído com sucesso!");
+			lista = UsuarioDao.listar(usuario);
+			sucesso("Usuário excluído com sucesso!", null);
 			return "";
 		} catch (Exception e) {
 			erro("Erro", "Não foi possível excluir o usuário.");
