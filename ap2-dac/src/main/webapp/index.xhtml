@@ -13,65 +13,82 @@
 <h:body>
 
 <center>
-	<p:panel header="Seja bem vindo(a) ao Denuncia Já!"></p:panel>
 	
-	<p:panelGrid columns="2"
-                 layout="grid"
-                 styleClass="ui-panelgrid-blank ui-fluid"
-                 style="border:0px none; background-color:transparent; width: 70%;">
-                 
-                 
-		<p:panelGrid columns="1"
-	       			 
-	                 layout="grid"
-	                 styleClass="ui-panelgrid-blank ui-fluid"
-	                 style="border:0px none; background-color:transparent;">	                 
-			  <p:panel header="Estatísticas de Abuso e Assédio Infantil">
-					<p>
-					    Infelizmente, as estatísticas de abuso e assédio infantil são alarmantes. De acordo com dados recentes,
-					    milhões de crianças em todo o mundo são vítimas desses crimes terríveis a cada ano.
-					    Aproximadamente uma em cada quatro meninas e um em cada seis meninos experimentam algum tipo de abuso antes de completarem 18 anos.
-					    Esses números chocantes destacam a urgência de enfrentar esse problema e proteger nossas crianças.
-					</p>
-				</p:panel>
-				<p:panel header="Importância de Denunciar">
-					<p>
-					    Denunciar casos de abuso e assédio infantil é crucial para interromper o ciclo de violência e proteger as crianças.
-					    Muitas vezes, as vítimas sofrem em silêncio, com medo, vergonha e manipulação por parte dos agressores.
-					    Ao denunciar, estamos oferecendo às crianças uma voz, uma oportunidade de buscar ajuda e colocar um fim ao sofrimento.
-					    Denunciar é um ato corajoso e fundamental para garantir a segurança e o bem-estar das crianças,
-					    além de responsabilizar os agressores pelos seus atos.
-					    Juntos, podemos criar uma sociedade onde todas as crianças possam crescer em um ambiente seguro e protegido.
-					</p>
-				</p:panel>
-		</p:panelGrid>
-		
-		<p:panelGrid columns="1"
-        			
+	<div class="card">
+	    <p:tabMenu activeIndex="0">
+	        <p:menuitem value="Login" outcome="/index.xhtml" icon="pi pi-fw pi-home">
+	            <f:param name="Login" value="0"/>
+	        </p:menuitem>
+	        <p:menuitem value="Cadastro de Incidentes" outcome="/cadastro_incidente.xhtml" icon="pi pi-fw pi-file">
+	            <f:param name="CadastroIncidente" value="1"/>
+	        </p:menuitem>
+	        <p:menuitem value="Cadastro de Usuário" outcome="/cadastro_usuario.xhtml" icon="pi pi-fw pi-user">
+	            <f:param name="CadastroUsuario" value="2"/>
+	        </p:menuitem>
+	    </p:tabMenu>
+	</div>
+	
+	<p:panel header="Seja bem vindo(a) ao Denuncia Já!" style="width:80%; margin-top: 30px;">
+	
+		<p:panelGrid columns="2"
 	                 layout="grid"
 	                 styleClass="ui-panelgrid-blank ui-fluid"
 	                 style="border:0px none; background-color:transparent;">
-			<h:form id= "formulario">
-				<p:messages id="messages" showDetail="true" closable="true"><p:autoUpdate/></p:messages>
-				
-				<p:panel header="Presenciou ou ouviu algum incidente? Faça sua denuncia:">
-					<p:panelGrid columns="2">
-						<p:outputLabel for="login" value= "Login" />
-						<p:inputText id="login" value="#{usuarioBean.usuario.login}" required="true" />
+	                 
+	                 
+			<p:panelGrid columns="1"
+		       			 
+		                 layout="grid"
+		                 styleClass="ui-panelgrid-blank ui-fluid"
+		                 style="border:0px none; background-color:transparent;">	                 
+				  <p:panel header="Estatísticas de Abuso e Assédio Infantil">
+						<p>
+						    Infelizmente, as estatísticas de abuso e assédio infantil são alarmantes. De acordo com dados recentes,
+						    milhões de crianças em todo o mundo são vítimas desses crimes terríveis a cada ano.
+						    Aproximadamente uma em cada quatro meninas e um em cada seis meninos experimentam algum tipo de abuso antes de completarem 18 anos.
+						    Esses números chocantes destacam a urgência de enfrentar esse problema e proteger nossas crianças.
+						</p>
+					</p:panel>
+					<p:panel header="Importância de Denunciar">
+						<p>
+						    Denunciar casos de abuso e assédio infantil é crucial para interromper o ciclo de violência e proteger as crianças.
+						    Muitas vezes, as vítimas sofrem em silêncio, com medo, vergonha e manipulação por parte dos agressores.
+						    Ao denunciar, estamos oferecendo às crianças uma voz, uma oportunidade de buscar ajuda e colocar um fim ao sofrimento.
+						    Denunciar é um ato corajoso e fundamental para garantir a segurança e o bem-estar das crianças,
+						    além de responsabilizar os agressores pelos seus atos.
+						    Juntos, podemos criar uma sociedade onde todas as crianças possam crescer em um ambiente seguro e protegido.
+						</p>
+					</p:panel>
+			</p:panelGrid>
+			
+			<p:panelGrid columns="1"
+	        			
+		                 layout="grid"
+		                 styleClass="ui-panelgrid-blank ui-fluid"
+		                 style="border:0px none; background-color:transparent;">
+				<h:form id= "formulario">
+					<p:messages id="messages" showDetail="true" closable="true"><p:autoUpdate/></p:messages>
+					
+					<p:panel header="Presenciou ou ouviu algum incidente? Faça sua denuncia:">
+						<p:panelGrid columns="2">
+							<p:outputLabel for="login" value= "Login" />
+							<p:inputText id="login" value="#{usuarioBean.usuario.login}" required="true" />
+							
+							<p:outputLabel for="senha" value="Senha" />
+							<p:password id="senha" value="#{usuarioBean.usuario.senha}" required="true" />
+						</p:panelGrid>
 						
-						<p:outputLabel for="senha" value="Senha" />
-						<p:password id="senha" value="#{usuarioBean.usuario.senha}" required="true" />
-					</p:panelGrid>
-					
-					
-			        <p:commandButton action="#{loginBean.logar}" value="Acessar" styleClass="ui-button-success"/>
-
-					<h3>Se for sua primeira vez, realize seu cadastro</h3>
-					<p:button outcome="cadastro_usuario" value="Cadastrar-se"/>
-				</p:panel>
-			</h:form>
+						
+				        <p:commandButton action="#{loginBean.logar}" value="Acessar"
+				        			     styleClass="ui-button-success" style="width: 60%; margin-top: 15px;"/>
+	
+						<h3>Se for sua primeira vez, realize seu cadastro</h3>
+						<p:button outcome="cadastro_usuario" value="Cadastrar-se" style="width: 60%;"/>
+					</p:panel>
+				</h:form>
+			</p:panelGrid>
 		</p:panelGrid>
-	</p:panelGrid>
+	</p:panel>
 </center>
 	
 </h:body>	
